@@ -1,7 +1,5 @@
 package virokr.models;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,9 +29,6 @@ public class HighScore {
 	
 	@Column(name = "value", nullable = false)
 	private int value;
-	
-	@Column(name = "date", nullable = false)
-	private LocalDateTime date;
 
 	public HighScore(AuthUser user, int value) {
 		this.user = user;
@@ -62,13 +57,5 @@ public class HighScore {
 	
 	public void setValue(int value) {
 		this.value = value;
-	}
-	
-	public LocalDateTime getDate() {
-		return date;
-	}
-	
-	public void setDate(LocalDateTime date) {
-		this.date = date;
 	}
 }
