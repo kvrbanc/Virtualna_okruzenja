@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import virokr.exceptions.InvalidOwnershipException;
 import virokr.models.HighScore;
 import virokr.security.jwt.JwtUtils;
 import virokr.services.ScoreService;
@@ -48,13 +47,12 @@ public class ScoreController {
 		scoreService.deleteScoreById(id);
 	}
 
-	@PostMapping("/{id}")
-	public ResponseEntity<Object> addScore(@RequestHeader(value = "Authorization") String headerAuth,
-			@PathVariable(value = "id") int id, @RequestBody int value) {
+	@PostMapping("/")
+	public ResponseEntity<Object> addScore(@RequestHeader(value = "Authorization") String headerAuth, @RequestBody int value) {
 		try {
-			scoreService.addScore(jwtUtils.getUsernameFromHeader(headerAuth), id, value);
+			scoreService.addScore(jwtUtils.getUsernameFromHeader(headerAuth), value);
 			return new ResponseEntity<>(HttpStatus.OK);
-		} catch (InvalidOwnershipException e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
