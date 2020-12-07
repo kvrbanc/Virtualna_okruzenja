@@ -15,7 +15,7 @@ import virokr.models.AuthUser;
 import virokr.services.UserService;
 
 @RestController
-@CrossOrigin(origins={"*", "http://www.jamb.com.hr", "https://jamb-react.herokuapp.com"})
+@CrossOrigin(origins={"*"})
 @RequestMapping("/users")
 public class UserController {
 

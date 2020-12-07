@@ -35,6 +35,11 @@ public class HighScore {
 	@Column(name = "date", nullable = false)
 	private LocalDateTime date;
 
+	public HighScore(AuthUser user, int value) {
+		this.user = user;
+		this.value = value;
+	}
+
 	public int getId() {
 		return id;
 	}
