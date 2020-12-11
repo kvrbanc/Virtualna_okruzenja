@@ -17,8 +17,8 @@ public class duse : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerMovement>().brdusa += 1;
-            Debug.Log(collision.GetComponent<PlayerMovement>().brdusa);
+            collision.GetComponent<PlayerMovement>().PovecajBrojDusa(1);
+            Debug.Log("Broj dusa: " + collision.GetComponent<PlayerMovement>().brdusa);
             Destroy(gameObject);
         }
     }
