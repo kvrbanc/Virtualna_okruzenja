@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float miny;
     public int brdusa = 0;
     public Text BrojacDusa;
+    // dodan brojac ENERGIJE
+    public Text trenutnaEnergija;
 
     // dodana ENERGIJA
     // trenutni iznos energije
@@ -37,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, newposition, brzina * Time.deltaTime);
         BrojacDusa.text = brdusa.ToString();
+        // prikazi energiju
+        trenutnaEnergija.text = energija.ToString();
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && (transform.position.y < maxy))
         {

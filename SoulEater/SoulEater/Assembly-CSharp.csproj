@@ -60,9 +60,10 @@
      <Compile Include="Assets\Scripts\spawnpoint.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\stitovi.cs" />
+     <Compile Include="Assets\Scripts\SpawnerNo2.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\tamneEnergije.cs" />
-     <Compile Include="Assets\Scripts\SpawnerNo2.cs" />
+     <Compile Include="Assets\Scripts\Destroyer.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Virtualna okruzenja-projekt/SoulEater/SoulEater/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
