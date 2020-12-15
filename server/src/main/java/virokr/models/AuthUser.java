@@ -32,7 +32,7 @@ public class AuthUser {
 
     @JsonIgnoreProperties("user")
     @OneToOne(mappedBy = "user", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE}) 
-    private HighScore highScore;
+    private Score Score;
 
     @Column(name = "username", nullable = false, unique = true)
     @Size(min = 3, max = 15)
@@ -62,12 +62,12 @@ public class AuthUser {
         this.id = id;
     }
     
-    public HighScore getHighScore() {
-        return highScore;
+    public Score getScore() {
+        return Score;
     }
 
-    public void setHighScore(HighScore highScore) {
-        this.highScore = highScore;
+    public void setScore(Score Score) {
+        this.Score = Score;
     }
     
     public String getUsername() {

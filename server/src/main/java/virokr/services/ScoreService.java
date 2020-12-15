@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import virokr.models.AuthUser;
-import virokr.models.HighScore;
+import virokr.models.Score;
 import virokr.repositories.ScoreRepository;
 import virokr.repositories.UserRepository;
 
@@ -20,11 +20,11 @@ public class ScoreService {
 	@Autowired
 	UserRepository userRepo;
 
-	public List<HighScore> getScores() {
+	public List<Score> getScores() {
 		return scoreRepo.findAll();
 	}
 
-	public HighScore getScoreById(int id) {
+	public Score getScoreById(int id) {
 		return scoreRepo.findById(id).get();
 	}
 
@@ -32,18 +32,19 @@ public class ScoreService {
 		scoreRepo.deleteById(id);
 	}
 	
-	public HighScore addScore(String username, int value) {
+	public Score addScore(String username, int value) {
+		if (value < 0 || value > 666) throw new IllegalArgumentException("Rezultat izvan ograničenja [0-666]");
 		AuthUser user = getUserFromUsername(username);
-		HighScore score = null;
-		List<HighScore> scores = scoreRepo.findAll();
-		for (HighScore s : scores) {
+		Score score = null;
+		List<Score> scores = scoreRepo.findAll();
+		for (Score s : scores) {
 			if (user.getId() == s.getUser().getId()) {
 				score = s;
 				break;
 			}
 		}
 		if (score == null) {
-			score = new HighScore(user, value);
+			score = new Score(user, value);
 		} else if (value > score.getValue()) {
 			score.setValue(value);
 		}
