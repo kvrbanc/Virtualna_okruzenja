@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class PlayerMovement : MonoBehaviour
     public Text BrojacDusa;
     // dodan brojac ENERGIJE
     public Text trenutnaEnergija;
+
+    // Zvukovi
+    public AudioSource angelsound;
+    public AudioSource energysound;
+    public AudioSource soulsound;
+    public AudioSource shieldsound;
 
     // dodana ENERGIJA
     // trenutni iznos energije
@@ -28,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     // po default-u igrac nije zasticen
     private bool zasticen = false;
 
+    
 
     void Start()
     {
@@ -89,7 +97,13 @@ public class PlayerMovement : MonoBehaviour
         if (!zasticen)
         {
             energija -= stetaAndela;
-            // tu ce se dodat uvjet za GAME OVER - kad energija padne ispod 0
+            
+            //ako je energija 0, prebaci na game over
+            if ((energija == 0) || (energija < 0))
+            {
+                Debug.Log("game over");
+                SceneManager.LoadScene(sceneName: "Game_over");
+            }
         }
     }
 
@@ -105,6 +119,34 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Collider za zvukove
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        // ako se dogodio sudar s andelom
+        if (collision.CompareTag("Angel"))
+        {
+            Debug.Log("andeo");
+            angelsound.Play();
+        }
+        // ako se dogodio sudar s dusom
+        if (collision.CompareTag("Soul"))
+        {
+            Debug.Log("dusa");
+            soulsound.Play();
+        }
+        // ako se dogodio sudar s energijom
+        if (collision.CompareTag("Energy"))
+        {
+            Debug.Log("energija");
+            energysound.Play();
+        }
+        // ako se dogodio sudar sa stitom
+        if (collision.CompareTag("Shield"))
+        {
+            Debug.Log("stit");
+            shieldsound.Play();
+        }
+    }
 
 
 }
