@@ -27,13 +27,13 @@ public class andeli : MonoBehaviour
     {   
         // ako se dogodio sudar sa igracem
         if (collision.CompareTag("Player"))
-        {   
+        {       
             // igracu se oduzme energija
             collision.GetComponent<PlayerMovement>().UmanjiEnergiju(steta);
             // kontrolni ispis energije
             Debug.Log( "Energija: " + collision.GetComponent<PlayerMovement>().energija);
             // uklanjanje samog objekta
-            Destroy(gameObject);
+            Destroy(gameObject);           
         }
     }
 
