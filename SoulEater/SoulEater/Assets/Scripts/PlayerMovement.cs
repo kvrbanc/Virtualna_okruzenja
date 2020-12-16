@@ -16,12 +16,6 @@ public class PlayerMovement : MonoBehaviour
     // dodan brojac ENERGIJE
     public Text trenutnaEnergija;
 
-    // Zvukovi
-    public AudioSource angelsound;
-    public AudioSource energysound;
-    public AudioSource soulsound;
-    public AudioSource shieldsound;
-
     // dodana ENERGIJA
     // trenutni iznos energije
     public int energija = 25;
@@ -41,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         newposition = new Vector2(transform.position.x, transform.position.y);
         transform.position = newposition;
+
     }
 
     void Update()
@@ -119,34 +114,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Collider za zvukove
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        // ako se dogodio sudar s andelom
-        if (collision.CompareTag("Angel"))
-        {
-            Debug.Log("andeo");
-            angelsound.Play();
-        }
-        // ako se dogodio sudar s dusom
-        if (collision.CompareTag("Soul"))
-        {
-            Debug.Log("dusa");
-            soulsound.Play();
-        }
-        // ako se dogodio sudar s energijom
-        if (collision.CompareTag("Energy"))
-        {
-            Debug.Log("energija");
-            energysound.Play();
-        }
-        // ako se dogodio sudar sa stitom
-        if (collision.CompareTag("Shield"))
-        {
-            Debug.Log("stit");
-            shieldsound.Play();
-        }
-    }
 
 
 }

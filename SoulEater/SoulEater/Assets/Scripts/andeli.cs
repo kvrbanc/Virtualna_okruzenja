@@ -13,6 +13,11 @@ public class andeli : MonoBehaviour
     // parametar koji odreduje maksimalnu stetu 
     public int maksSteta = 5;
 
+
+    // varijabla koja pohranjuje zvuk
+    public AudioSource zvuk;
+
+
     void Start()
     {   
         // odredivanje i postavljanje pocetne pozicije andela
@@ -20,6 +25,10 @@ public class andeli : MonoBehaviour
         transform.position = newposition;
         // odredivanje stete andela - nasumicni broj
         steta = Random.Range(0, maksSteta);
+
+        // ucitavanje zvuka
+        zvuk = GetComponent<AudioSource>();
+
     }
 
     // kada se aktivira "collider"
@@ -32,8 +41,11 @@ public class andeli : MonoBehaviour
             collision.GetComponent<PlayerMovement>().UmanjiEnergiju(steta);
             // kontrolni ispis energije
             Debug.Log( "Energija: " + collision.GetComponent<PlayerMovement>().energija);
+
+            // reprodukcija zvuka
+            AudioSource.PlayClipAtPoint(zvuk.clip, transform.position);
             // uklanjanje samog objekta
-            Destroy(gameObject);           
+            Destroy(gameObject);
         }
     }
 
@@ -42,5 +54,7 @@ public class andeli : MonoBehaviour
         // pomak objekta za svaki frame
         transform.Translate(Vector2.left * brzina * Time.deltaTime);
     }
+
+
 }
 

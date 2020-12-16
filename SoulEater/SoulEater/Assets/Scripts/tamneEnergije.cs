@@ -11,12 +11,18 @@ public class tamneEnergije : MonoBehaviour
     // povecanje energije koje ce igrac dobitit igracu
     public int povecanjeEnergije = 1;
 
+    // varijabla koja pohranjuje zvuk
+    public AudioSource zvuk;
+
 
     void Start()
     {
         // odredivanje i postavljanje pocetne pozicije tamne energije
         newposition = new Vector2(transform.position.x, transform.position.y);
         transform.position = newposition;
+
+        // ucitavanje zvuka
+        zvuk = GetComponent<AudioSource>();
     }
 
     // kada se aktivira "collider"
@@ -29,6 +35,8 @@ public class tamneEnergije : MonoBehaviour
             collision.GetComponent<PlayerMovement>().PovecajEnergiju(povecanjeEnergije);
             // kontrolni ispis energije
             Debug.Log("Energija: " + collision.GetComponent<PlayerMovement>().energija);
+            // reprodukcija zvuka
+            AudioSource.PlayClipAtPoint(zvuk.clip, transform.position);
             // uklanjanje samog objekta
             Destroy(gameObject);
         }

@@ -293,10 +293,6 @@ MonoBehaviour:
   brdusa: 0
   BrojacDusa: {fileID: 1738758626}
   trenutnaEnergija: {fileID: 201427867}
-  angelsound: {fileID: 1058582203109352918, guid: dac921093cdc4554482d2cc91844c44c, type: 3}
-  energysound: {fileID: 1058582203109352918, guid: 4f35346ccd9f5924781a0f2f1513daf5, type: 3}
-  soulsound: {fileID: 1058582203109352918, guid: 2cc7780885bd8e040b9d6ec499430430, type: 3}
-  shieldsound: {fileID: 1058582203109352918, guid: 77fc5bc602ca94f4f956b3c9fcfe6338, type: 3}
   energija: 25
   maksEnergija: 25
 --- !u!50 &130315151
@@ -686,8 +682,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703375492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.18181801, y: -0.0927645, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.031, y: -0.0927645, z: 0}
+  m_LocalScale: {x: 1.1137613, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5

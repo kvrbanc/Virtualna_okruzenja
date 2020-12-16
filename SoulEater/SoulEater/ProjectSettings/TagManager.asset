@@ -8,6 +8,7 @@ TagManager:
   - Soul
   - Shield
   - Energy
+  - Sound
   layers:
   - Default
   - TransparentFX

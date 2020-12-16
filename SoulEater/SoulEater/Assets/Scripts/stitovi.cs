@@ -11,12 +11,18 @@ public class stitovi : MonoBehaviour
     // trajanje zastite koju ce igrac dobiti - u sekundama
     public int trajanjeStita = 2;
 
+    // varijabla koja pohranjuje zvuk
+    public AudioSource zvuk;
+
 
     void Start()
     {
         // odredivanje i postavljanje pocetne pozicije stita
         newposition = new Vector2(transform.position.x, transform.position.y);
         transform.position = newposition;
+
+        // ucitavanje zvuka
+        zvuk = GetComponent<AudioSource>();
     }
 
     // kada se aktivira "collider"
@@ -29,6 +35,8 @@ public class stitovi : MonoBehaviour
             collision.GetComponent<PlayerMovement>().Zastiti(trajanjeStita);
             // kontrolni ispis 
             Debug.Log("Igraceva zastita povecana za "+ trajanjeStita + " sekunde.");
+            // reprodukcija zvuka
+            AudioSource.PlayClipAtPoint(zvuk.clip, transform.position);
             // uklanjanje samog objekta
             Destroy(gameObject);
         }
