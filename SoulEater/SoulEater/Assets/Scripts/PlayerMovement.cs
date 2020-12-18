@@ -33,7 +33,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject animacijaHeal;
     public GameObject animacijaStete;
     public GameObject animacijaSakuplanjaDuse;
-
+    public GameObject animacijaSakupljanjaStita;
+    public GameObject animacijaDobivanjaPointa;
 
 
     // varijable koje ce spremati instancirene "animacije"
@@ -41,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     private GameObject instancaHealAnimacije;
     private GameObject instancaAnimacijeStete;
     private GameObject instancaAnimacijeSakDuse;
+    private GameObject instancaAnimacijeSakStita;
+    private GameObject instancaAnimacijeDobPointa;
 
     void Start()
     {
@@ -50,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // pomakni igraca
         transform.position = Vector2.MoveTowards(transform.position, newposition, brzina * Time.deltaTime);
         // pomakni i "animaciju" stita - ako je ima
         if (instancaAnimacijeZastite != null)
@@ -58,6 +62,15 @@ public class PlayerMovement : MonoBehaviour
             Vector3 pozicijaInstance = newposition;
             pozicijaInstance.y = pozicijaInstance.y - 0.10f;
             instancaAnimacijeZastite.transform.position = pozicijaInstance;
+        }
+        // pomakni i "animaciju" sakupljanja stita - ako je ima
+        if (instancaAnimacijeSakStita != null)
+        {
+            // mala izmjena pozicije
+            Vector3 pozicijaInstance = newposition;
+            pozicijaInstance.x = pozicijaInstance.x + 0.50f;
+            pozicijaInstance.y = pozicijaInstance.y - 0.10f;
+            instancaAnimacijeSakStita.transform.position = pozicijaInstance;
         }
         // pomakni i "animaciju" heal-anja - ako je ima
         if (instancaHealAnimacije != null)
@@ -84,10 +97,21 @@ public class PlayerMovement : MonoBehaviour
             pozicijaInstance.y = pozicijaInstance.y + 0.3f;
             instancaAnimacijeSakDuse.transform.position = pozicijaInstance;
         }
+        // pomakni i "animaciju" dobivanja point-a  - ako je ima
+        if (instancaAnimacijeDobPointa != null)
+        {
+            // mala izmjena pozicije
+            Vector3 pozicijaInstance = newposition;
+            pozicijaInstance.x = pozicijaInstance.x + 0.50f;
+            pozicijaInstance.y = pozicijaInstance.y - 0.1f;
+            instancaAnimacijeDobPointa.transform.position = pozicijaInstance;
+        }
         // prikazi broj dusa
         BrojacDusa.text = brdusa.ToString();
         // prikazi energiju
         trenutnaEnergija.text = energija.ToString();
+
+
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && (transform.position.y < maxy))
         {
@@ -121,10 +145,12 @@ public class PlayerMovement : MonoBehaviour
         // uvecaj nroj dusa
         brdusa += brojDusa;
 
-        // postavi "animaciju" sakupljanja
+        // postavi "animaciju" sakupljanja i dobivanja pointa
         instancaAnimacijeSakDuse = Instantiate(animacijaSakuplanjaDuse, transform.position, Quaternion.identity);
+        instancaAnimacijeDobPointa = Instantiate(animacijaDobivanjaPointa, transform.position, Quaternion.identity);
         // unisti "animaciju" nakon 0.25 sekunde
         Destroy(instancaAnimacijeSakDuse, 0.25f);
+        Destroy(instancaAnimacijeDobPointa, 0.25f);
     }
 
 
@@ -136,6 +162,11 @@ public class PlayerMovement : MonoBehaviour
         {
             instancaAnimacijeZastite = Instantiate(animacijaZastite, transform.position, Quaternion.identity);
         }
+
+        // postavi "animaciju" sakupljanja stita
+        instancaAnimacijeSakStita = Instantiate(animacijaSakupljanjaStita, transform.position, Quaternion.identity);
+        // unisti "animaciju" nakon 0.25 sekundi
+        Destroy(instancaAnimacijeSakStita, 0.25f);
       
         // postavi igraca u "zasticeno stanje"
         zasticen = true;

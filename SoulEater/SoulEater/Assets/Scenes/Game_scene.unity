@@ -299,6 +299,8 @@ MonoBehaviour:
   animacijaHeal: {fileID: 183392426316495816, guid: 7ceaa0bf11fd93c459a8cf9931d370f6, type: 3}
   animacijaStete: {fileID: 7569395454881088015, guid: 2a03317b950afc24ab965509dd129a69, type: 3}
   animacijaSakuplanjaDuse: {fileID: 306414112251163308, guid: fd94a26ac023a6b4eb431bf34cf3f3ae, type: 3}
+  animacijaSakupljanjaStita: {fileID: 3345861267149514914, guid: a593c36d4f6bd0046bedc1b597501faf, type: 3}
+  animacijaDobivanjaPointa: {fileID: 6283912415812936650, guid: 9f6ed7ce89b18bd4b995aea1f5d6784d, type: 3}
 --- !u!50 &130315151
 Rigidbody2D:
   serializedVersion: 4
