@@ -30,11 +30,13 @@ public class PlayerMovement : MonoBehaviour
 
     // objekti koji ce predstvaljati "animacije"
     public GameObject animacijaZastite;
+    public GameObject animacijaHeal;
 
 
 
     // varijable koje ce spremati instancirene "animacije"
     private GameObject instancaAnimacijeZastite;
+    private GameObject instancaHealAnimacije;
 
     void Start()
     {
@@ -48,7 +50,18 @@ public class PlayerMovement : MonoBehaviour
         // pomakni i "animaciju" stita - ako je ima
         if (instancaAnimacijeZastite != null)
         {
-            instancaAnimacijeZastite.transform.position = newposition;
+            // mala izmjenjena pozicije
+            Vector3 pozicijaInstance = newposition;
+            pozicijaInstance.y = pozicijaInstance.y - 0.10f;
+            instancaAnimacijeZastite.transform.position = pozicijaInstance;
+        }
+        // pomakni i "animaciju" heal-anja - ako je ima
+        if (instancaHealAnimacije != null)
+        {
+            // mala izmjenjena pozicije
+            Vector3 pozicijaInstance = newposition;
+            pozicijaInstance.y = pozicijaInstance.y + 1.0f;
+            instancaHealAnimacije.transform.position = pozicijaInstance;
         }
         // prikazi broj dusa
         BrojacDusa.text = brdusa.ToString();
@@ -125,12 +138,26 @@ public class PlayerMovement : MonoBehaviour
     //metoda koju poziva TAMNA ENERGIJA - igracu se povecava energija
     public void PovecajEnergiju(int povecanjeEnergije)
     {   
-        energija += povecanjeEnergije;
-        // ogranici energiju na maksimum
-        if(energija > maksEnergija)
-        {
-            energija = maksEnergija;
+        // ako energija nije na maksimumu
+        if(energija < maksEnergija)
+        {   
+            // povecaj energiju
+            energija += povecanjeEnergije;
+
+            // postavi "animaciju" heal-anja
+            Vector3 pozicijaInstance = transform.position;
+            pozicijaInstance.y = pozicijaInstance.y + 1.0f;
+            instancaHealAnimacije = Instantiate(animacijaHeal, transform.position, Quaternion.identity);
+            // unisti "animaciju" nakon 1 sekunde
+            Destroy(instancaHealAnimacije, 0.25f);
+
+            // ogranici energiju na maksimum
+            if (energija > maksEnergija)
+            {
+                energija = maksEnergija;
+            }
         }
+
     }
 
 
