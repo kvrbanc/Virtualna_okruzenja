@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     public Text BrojacDusa;
     // dodan brojac ENERGIJE
     public Text trenutnaEnergija;
+    // dodan label za level
+    public Text levelLabel;
+
+    // odredivanje trenutnog levela
+    public int trenutniLevel = 1;
 
     // dodana ENERGIJA
     // trenutni iznos energije
@@ -110,6 +115,8 @@ public class PlayerMovement : MonoBehaviour
         BrojacDusa.text = "Souls collected: " + brdusa.ToString();
         // prikazi energiju
         trenutnaEnergija.text = "Energy: " + energija.ToString();
+        // prikazi level
+        levelLabel.text = "Level: " + trenutniLevel.ToString();
 
 
 
@@ -151,6 +158,11 @@ public class PlayerMovement : MonoBehaviour
         // unisti "animaciju" nakon 0.25 sekunde
         Destroy(instancaAnimacijeSakDuse, 0.25f);
         Destroy(instancaAnimacijeDobPointa, 0.25f);
+
+
+        // prvojera levela
+        provjeriLevel();
+
     }
 
 
@@ -222,6 +234,23 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+
+    public void provjeriLevel()
+    {   
+        // izracun levela
+        int noviLevel = 1 + (brdusa / 50);
+        // ako se preslo u novi level
+        if( noviLevel != trenutniLevel)
+        {
+            trenutniLevel = noviLevel;
+            //
+            //
+            // tu bi isla logika promjene levela
+            //
+            //
+            //
+        }
+    }
 
 
 }
