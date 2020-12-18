@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2837017265149907808}
   m_Layer: 0
   m_Name: SpawnerNo2
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,3 +67,4 @@ MonoBehaviour:
   - {fileID: 8106216463664936324, guid: c372a9145623f544785fcf3cde864eb5, type: 3}
   - {fileID: 2821881624612205697, guid: 512e0a145ca6ac14b97c7b03f860443b, type: 3}
   vrijemeIzmeduSpawnova: 0.5
+  trenutniLevel: 1

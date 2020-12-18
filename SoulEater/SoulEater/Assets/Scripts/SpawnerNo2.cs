@@ -23,6 +23,9 @@ public class SpawnerNo2 : MonoBehaviour
     private List<int> zauzetaMjesta =new List<int>(); // incijalizacija zbog kasnije provjere
 
 
+    // varijabla koja sprema trenutni level
+    public int trenutniLevel = 1;
+
     // za svaki frame
     void Update()
     {
@@ -80,5 +83,12 @@ public class SpawnerNo2 : MonoBehaviour
             // ako ima jos vremena do spawna, umanji ga
             vrijemeDoSpawna -= Time.deltaTime;
         }
+    }
+
+
+    // funkcija koja se poziva kada se promijeni level
+    public void postaviLevel(int level)
+    {
+        trenutniLevel = level;
     }
 }

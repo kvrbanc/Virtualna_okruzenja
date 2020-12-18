@@ -50,10 +50,17 @@ public class PlayerMovement : MonoBehaviour
     private GameObject instancaAnimacijeSakStita;
     private GameObject instancaAnimacijeDobPointa;
 
+
+    // varijabla koja sprema komponentu spawnera
+    private GameObject spawner;
+
     void Start()
     {
         newposition = new Vector2(transform.position.x, transform.position.y);
         transform.position = newposition;
+
+        // dohvati spawner
+        spawner = GameObject.FindGameObjectsWithTag("Spawner")[0];
     }
 
     void Update()
@@ -243,12 +250,8 @@ public class PlayerMovement : MonoBehaviour
         if( noviLevel != trenutniLevel)
         {
             trenutniLevel = noviLevel;
-            //
-            //
-            // tu bi isla logika promjene levela
-            //
-            //
-            //
+            // izmjena levela na spawneru
+            spawner.GetComponent<SpawnerNo2>().postaviLevel(noviLevel);
         }
     }
 
