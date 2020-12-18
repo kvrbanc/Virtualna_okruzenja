@@ -17,6 +17,9 @@ public class andeli : MonoBehaviour
     // varijabla koja pohranjuje zvuk
     public AudioSource zvuk;
 
+    // varijabla koja pohranjuje objekt igraca
+    private PlayerMovement igrac;
+
 
     void Start()
     {   
@@ -29,6 +32,7 @@ public class andeli : MonoBehaviour
         // ucitavanje zvuka
         zvuk = GetComponent<AudioSource>();
 
+
     }
 
     // kada se aktivira "collider"
@@ -36,14 +40,20 @@ public class andeli : MonoBehaviour
     {   
         // ako se dogodio sudar sa igracem
         if (collision.CompareTag("Player"))
-        {       
-            // igracu se oduzme energija
-            collision.GetComponent<PlayerMovement>().UmanjiEnergiju(steta);
+        {   
+
+            // igracu se oduzme energija ako nije zasticen
+            igrac = collision.GetComponent<PlayerMovement>();
+            if (! igrac.zasticen)
+            {
+                igrac.UmanjiEnergiju(steta);
+
+                // reprodukcija zvuka
+                AudioSource.PlayClipAtPoint(zvuk.clip, transform.position);
+            }
             // kontrolni ispis energije
             Debug.Log( "Energija: " + collision.GetComponent<PlayerMovement>().energija);
 
-            // reprodukcija zvuka
-            AudioSource.PlayClipAtPoint(zvuk.clip, transform.position);
             // uklanjanje samog objekta
             Destroy(gameObject);
         }

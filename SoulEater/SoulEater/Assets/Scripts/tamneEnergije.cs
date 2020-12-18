@@ -14,6 +14,9 @@ public class tamneEnergije : MonoBehaviour
     // varijabla koja pohranjuje zvuk
     public AudioSource zvuk;
 
+    // varijabla koja pohranjuje igraca
+    private PlayerMovement igrac;
+
 
     void Start()
     {
@@ -32,11 +35,18 @@ public class tamneEnergije : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             // igracu se poveca energija
-            collision.GetComponent<PlayerMovement>().PovecajEnergiju(povecanjeEnergije);
+            igrac = collision.GetComponent<PlayerMovement>();
             // kontrolni ispis energije
             Debug.Log("Energija: " + collision.GetComponent<PlayerMovement>().energija);
-            // reprodukcija zvuka
-            AudioSource.PlayClipAtPoint(zvuk.clip, transform.position);
+
+            // ako je energija igraca manja od maksimalne
+            if (igrac.energija < igrac.maksEnergija) 
+            {
+                // povecaj energiju
+                igrac.PovecajEnergiju(povecanjeEnergije);
+                // reprodukcija zvuka
+                AudioSource.PlayClipAtPoint(zvuk.clip, transform.position);
+            }
             // uklanjanje samog objekta
             Destroy(gameObject);
         }

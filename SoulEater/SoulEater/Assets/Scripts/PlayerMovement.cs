@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     // trajanje zastite koju daju stitovi - u sekundama
     private float trajanjeZastite = 0.0f;
     // po default-u igrac nije zasticen
-    private bool zasticen = false;
+    public bool zasticen = false;
 
     // objekti koji ce predstvaljati "animacije"
     public GameObject animacijaZastite;
@@ -107,9 +107,9 @@ public class PlayerMovement : MonoBehaviour
             instancaAnimacijeDobPointa.transform.position = pozicijaInstance;
         }
         // prikazi broj dusa
-        BrojacDusa.text = brdusa.ToString();
+        BrojacDusa.text = "Souls collected: " + brdusa.ToString();
         // prikazi energiju
-        trenutnaEnergija.text = energija.ToString();
+        trenutnaEnergija.text = "Energy: " + energija.ToString();
 
 
 
@@ -178,27 +178,24 @@ public class PlayerMovement : MonoBehaviour
     // metoda koju aktivira ANDEO - igracu se oduzima energija
     public void UmanjiEnergiju(int stetaAndela)
     {
-        // ako igrac nije zasticen, umanji mu energiju
-        if (!zasticen)
-        {
 
-            // postavi "animaciju" stete
-            instancaAnimacijeStete = Instantiate(animacijaStete, transform.position, Quaternion.identity);
-            // unisti "animaciju" nakon 0.25 sekunde
-            Destroy(instancaAnimacijeStete, 0.25f);
+        // postavi "animaciju" stete
+        instancaAnimacijeStete = Instantiate(animacijaStete, transform.position, Quaternion.identity);
+        // unisti "animaciju" nakon 0.25 sekunde
+        Destroy(instancaAnimacijeStete, 0.25f);
 
-            // umanji energiju
-            energija -= stetaAndela;
+        // umanji energiju
+        energija -= stetaAndela;
             
-            //ako je energija 0, prebaci na game over
-            if ((energija == 0) || (energija < 0))
-            {
-                // postavi energiju na 0
-                energija = 0;
-                Debug.Log("game over");
-                SceneManager.LoadScene(sceneName: "Game_over");
-            }
+        //ako je energija 0, prebaci na game over
+        if ((energija == 0) || (energija < 0))
+        {
+            // postavi energiju na 0
+            energija = 0;
+            Debug.Log("game over");
+            SceneManager.LoadScene(sceneName: "Game_over");
         }
+        
     }
 
 
