@@ -295,6 +295,7 @@ MonoBehaviour:
   trenutnaEnergija: {fileID: 201427867}
   energija: 25
   maksEnergija: 25
+  animacijaZastite: {fileID: 1369293550195423940, guid: 7ce845c0b3b9f8a49bce800d8ad55723, type: 3}
 --- !u!50 &130315151
 Rigidbody2D:
   serializedVersion: 4

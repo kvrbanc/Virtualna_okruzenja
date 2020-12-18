@@ -22,25 +22,35 @@ public class PlayerMovement : MonoBehaviour
     // maksimalni iznos energije
     public int maksEnergija = 25;
 
-
     // dodana ZASTITA
     // trajanje zastite koju daju stitovi - u sekundama
     private float trajanjeZastite = 0.0f;
     // po default-u igrac nije zasticen
     private bool zasticen = false;
 
-    
+    // objekti koji ce predstvaljati "animacije"
+    public GameObject animacijaZastite;
+
+
+
+    // varijable koje ce spremati instancirene "animacije"
+    private GameObject instancaAnimacijeZastite;
 
     void Start()
     {
         newposition = new Vector2(transform.position.x, transform.position.y);
         transform.position = newposition;
-
     }
 
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, newposition, brzina * Time.deltaTime);
+        // pomakni i "animaciju" stita - ako je ima
+        if (instancaAnimacijeZastite != null)
+        {
+            instancaAnimacijeZastite.transform.position = newposition;
+        }
+        // prikazi broj dusa
         BrojacDusa.text = brdusa.ToString();
         // prikazi energiju
         trenutnaEnergija.text = energija.ToString();
@@ -60,9 +70,12 @@ public class PlayerMovement : MonoBehaviour
             trajanjeZastite -= Time.deltaTime;
             // ako trajanje zastite otide ispod nule, igrac vise nije zasticen
             if(trajanjeZastite <= 0.0f)
-            {
+            {   
                 trajanjeZastite = 0.0f;
                 zasticen = false;
+
+                // ukloni "animaciju" zastite
+                Destroy(instancaAnimacijeZastite);
             }
         }
     }
@@ -77,7 +90,13 @@ public class PlayerMovement : MonoBehaviour
 
     // metoda koju aktivira STIT - igrac se stiti od smanjenja energije
     public void Zastiti(int trajanjeStita)
-    {   
+    {
+        //ako igrac dosad nije bio zasticen - postavi "animaciju" zastite
+        if (!zasticen)
+        {
+            instancaAnimacijeZastite = Instantiate(animacijaZastite, transform.position, Quaternion.identity);
+        }
+      
         // postavi igraca u "zasticeno stanje"
         zasticen = true;
         // uvecaj trajanje zastite
