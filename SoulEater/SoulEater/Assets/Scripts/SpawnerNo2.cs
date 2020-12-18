@@ -9,8 +9,15 @@ public class SpawnerNo2 : MonoBehaviour
     public GameObject[] objekti;
     // preostalo vrijeme do spawna
     private float vrijemeDoSpawna;
-    // vrijeme izmedu spawna
-    public float vrijemeIzmeduSpawnova;
+    // vrijeme izmedu spawna - ide od 0.9 sekunde do 0.5 sekunde ovisno o levelu
+    public float pocetnoVrijemeIzmeduSpawnova = 0.9f;
+    public float minVrijemeIzmeđuSpawnova = 0.5f;
+    private float vrijemeIzmeduSpawnova;
+
+    // brzine generiranih objekata
+    public float pocetnaBrzinaObjekata = 10f;
+    public float maksBrzinaObjekata = 13f;
+
     // polje koje sadrzi spawnpointe
     private Vector3[] spawnPoints = {
         new Vector3(8, 4, 0),
@@ -20,11 +27,19 @@ public class SpawnerNo2 : MonoBehaviour
         new Vector3(8, -4, 0)
     };
     // lista mjesta na kojima se vise ne mogu instancirati objekti
-    private List<int> zauzetaMjesta =new List<int>(); // incijalizacija zbog kasnije provjere
+    private List<int> zauzetaMjesta = new List<int>(); // incijalizacija zbog kasnije provjere
 
 
     // varijabla koja sprema trenutni level
     public int trenutniLevel = 1;
+
+
+
+    void Start()
+    {
+        //postavi vrijeme izmedu spawnova
+        vrijemeIzmeduSpawnova = pocetnoVrijemeIzmeduSpawnova;
+    }
 
     // za svaki frame
     void Update()
@@ -88,7 +103,24 @@ public class SpawnerNo2 : MonoBehaviour
 
     // funkcija koja se poziva kada se promijeni level
     public void postaviLevel(int level)
-    {
+    {   
+        // postavi trenutni level
         trenutniLevel = level;
+        // izmjeni vrijeme između spawnova - smanjuje se linearno od maskimalnog do minimalnog vremena
+        vrijemeIzmeduSpawnova = pocetnoVrijemeIzmeduSpawnova - ((pocetnoVrijemeIzmeduSpawnova - minVrijemeIzmeđuSpawnova)/14f)*trenutniLevel;
+
+        // izmjeni brzine generiranih objekata
+
+        float promjenaBrzine =((pocetnaBrzinaObjekata - maksBrzinaObjekata) / 14f)* trenutniLevel;
+
+        GameObject andeo = GameObject.FindGameObjectsWithTag("Angel")[0];
+        GameObject dusa = GameObject.FindGameObjectsWithTag("Soul")[0];
+        GameObject stit = GameObject.FindGameObjectsWithTag("Shield")[0];
+        GameObject energija = GameObject.FindGameObjectsWithTag("Energy")[0];
+
+        andeo.GetComponent <andeli> ().izmjeniBrzinu(promjenaBrzine);
+        dusa.GetComponent<duse>().izmjeniBrzinu(promjenaBrzine);
+        stit.GetComponent<stitovi>().izmjeniBrzinu(promjenaBrzine);
+        energija.GetComponent<tamneEnergije>().izmjeniBrzinu(promjenaBrzine);
     }
 }

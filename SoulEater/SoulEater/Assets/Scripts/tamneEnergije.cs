@@ -5,7 +5,7 @@ using UnityEngine;
 public class tamneEnergije : MonoBehaviour
 {
     // brzina kojom se tamna energija krece ulijevo
-    public float brzina;
+    public float brzina = 10f;
     // pocetna pozicija tamne energije
     private Vector2 newposition;
     // povecanje energije koje ce igrac dobitit igracu
@@ -56,6 +56,13 @@ public class tamneEnergije : MonoBehaviour
     {
         // pomak objekta za svaki frame
         transform.Translate(Vector2.left * brzina * Time.deltaTime);
+    }
+
+
+    // metodu zove spawner kako bi izmjenji brzinu objekta kada se promijeni level
+    public void izmjeniBrzinu(float promjenaBrzine)
+    {
+        brzina = brzina + promjenaBrzine;
     }
 }
 

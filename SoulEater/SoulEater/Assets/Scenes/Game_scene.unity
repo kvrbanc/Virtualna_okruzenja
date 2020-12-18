@@ -784,6 +784,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2837017265149907808, guid: 76d8918e4264cae4c9eabdefd92aed07, type: 3}
+      propertyPath: vrijemeIzmeduSpawnova
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837017265149907808, guid: 76d8918e4264cae4c9eabdefd92aed07, type: 3}
+      propertyPath: "minVrijemeIzme\u0111uSpawnova"
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837017265149907808, guid: 76d8918e4264cae4c9eabdefd92aed07, type: 3}
+      propertyPath: pocetnoVrijemeIzmeduSpawnova
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6158531548317831240, guid: 76d8918e4264cae4c9eabdefd92aed07, type: 3}
       propertyPath: m_Name
       value: SpawnerNo2

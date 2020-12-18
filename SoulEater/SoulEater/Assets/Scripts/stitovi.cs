@@ -5,7 +5,7 @@ using UnityEngine;
 public class stitovi : MonoBehaviour
 {
     // brzina kojom se stit krece ulijevo
-    public float brzina;
+    public float brzina = 10f;
     // pocetna pozicija stita
     private Vector2 newposition;
     // trajanje zastite koju ce igrac dobiti - u sekundama
@@ -46,6 +46,13 @@ public class stitovi : MonoBehaviour
     {
         // pomak objekta za svaki frame
         transform.Translate(Vector2.left * brzina * Time.deltaTime);
+    }
+
+
+    // metodu zove spawner kako bi izmjenji brzinu objekta kada se promijeni level
+    public void izmjeniBrzinu(float promjenaBrzine)
+    {
+        brzina = brzina + promjenaBrzine;
     }
 }
 

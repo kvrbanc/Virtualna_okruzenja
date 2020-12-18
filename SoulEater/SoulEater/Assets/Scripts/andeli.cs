@@ -5,7 +5,7 @@ using UnityEngine;
 public class andeli : MonoBehaviour
 {
     // brzina kojom se andeo krece ulijevo
-    public float brzina;
+    public float brzina = 10f;
     // pocetna pozicija andela
     private Vector2 newposition;
     // steta koju ce andeo napraviti igracu
@@ -63,6 +63,13 @@ public class andeli : MonoBehaviour
     {   
         // pomak objekta za svaki frame
         transform.Translate(Vector2.left * brzina * Time.deltaTime);
+    }
+
+
+    // metodu zove spawner kako bi izmjenji brzinu objekta kada se promijeni level
+    public void izmjeniBrzinu(float promjenaBrzine)
+    {
+        brzina = brzina + promjenaBrzine;
     }
 
 

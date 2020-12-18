@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brzina: 10
+  zvuk: {fileID: 0}
 --- !u!114 &-4457225999828620753
 MonoBehaviour:
   m_ObjectHideFlags: 0

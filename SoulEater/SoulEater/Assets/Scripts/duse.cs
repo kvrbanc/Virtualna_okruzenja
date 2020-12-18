@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class duse : MonoBehaviour
 {
-    public float brzina;
+    public float brzina = 10f;
     private Vector2 newposition;
 
     // varijabla koja pohranjuje zvuk
@@ -35,5 +35,12 @@ public class duse : MonoBehaviour
     private void Update()
     {
         transform.Translate(Vector2.left * brzina * Time.deltaTime);
+    }
+
+
+    // metodu zove spawner kako bi izmjenji brzinu objekta kada se promijeni level
+    public void izmjeniBrzinu(float promjenaBrzine)
+    {
+        brzina = brzina + promjenaBrzine;
     }
 }
