@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject animacijaZastite;
     public GameObject animacijaHeal;
     public GameObject animacijaStete;
+    public GameObject animacijaSakuplanjaDuse;
 
 
 
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject instancaAnimacijeZastite;
     private GameObject instancaHealAnimacije;
     private GameObject instancaAnimacijeStete;
+    private GameObject instancaAnimacijeSakDuse;
 
     void Start()
     {
@@ -52,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         // pomakni i "animaciju" stita - ako je ima
         if (instancaAnimacijeZastite != null)
         {
-            // mala izmjenjena pozicije
+            // mala izmjena pozicije
             Vector3 pozicijaInstance = newposition;
             pozicijaInstance.y = pozicijaInstance.y - 0.10f;
             instancaAnimacijeZastite.transform.position = pozicijaInstance;
@@ -60,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         // pomakni i "animaciju" heal-anja - ako je ima
         if (instancaHealAnimacije != null)
         {
-            // mala izmjenjena pozicije
+            // mala izmjena pozicije
             Vector3 pozicijaInstance = newposition;
             pozicijaInstance.y = pozicijaInstance.y + 1.0f;
             instancaHealAnimacije.transform.position = pozicijaInstance;
@@ -68,10 +70,19 @@ public class PlayerMovement : MonoBehaviour
         // pomakni i "animaciju" stete - ako je ima
         if (instancaAnimacijeStete != null)
         {
-            // mala izmjenjena pozicije
+            // mala izmjena pozicije
             Vector3 pozicijaInstance = newposition;
             pozicijaInstance.x = pozicijaInstance.x + 0.6f;
             instancaAnimacijeStete.transform.position = pozicijaInstance;
+        }
+        // pomakni i "animaciju" sakuplanja duse - ako je ima
+        if (instancaAnimacijeSakDuse != null)
+        {
+            // mala izmjena pozicije
+            Vector3 pozicijaInstance = newposition;
+            pozicijaInstance.x = pozicijaInstance.x - 1.0f;
+            pozicijaInstance.y = pozicijaInstance.y + 0.3f;
+            instancaAnimacijeSakDuse.transform.position = pozicijaInstance;
         }
         // prikazi broj dusa
         BrojacDusa.text = brdusa.ToString();
@@ -106,8 +117,14 @@ public class PlayerMovement : MonoBehaviour
 
     // metoda koju zove DUSA - igracu se povecava brojac dusa
     public void PovecajBrojDusa(int brojDusa)
-    {
+    {   
+        // uvecaj nroj dusa
         brdusa += brojDusa;
+
+        // postavi "animaciju" sakupljanja
+        instancaAnimacijeSakDuse = Instantiate(animacijaSakuplanjaDuse, transform.position, Quaternion.identity);
+        // unisti "animaciju" nakon 0.25 sekunde
+        Destroy(instancaAnimacijeSakDuse, 0.25f);
     }
 
 
@@ -134,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
         if (!zasticen)
         {
 
-            // postavi "animaciju" heal-anja
+            // postavi "animaciju" stete
             instancaAnimacijeStete = Instantiate(animacijaStete, transform.position, Quaternion.identity);
             // unisti "animaciju" nakon 0.25 sekunde
             Destroy(instancaAnimacijeStete, 0.25f);

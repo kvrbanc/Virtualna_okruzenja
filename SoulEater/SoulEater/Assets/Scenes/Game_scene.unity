@@ -298,6 +298,7 @@ MonoBehaviour:
   animacijaZastite: {fileID: 1369293550195423940, guid: 7ce845c0b3b9f8a49bce800d8ad55723, type: 3}
   animacijaHeal: {fileID: 183392426316495816, guid: 7ceaa0bf11fd93c459a8cf9931d370f6, type: 3}
   animacijaStete: {fileID: 7569395454881088015, guid: 2a03317b950afc24ab965509dd129a69, type: 3}
+  animacijaSakuplanjaDuse: {fileID: 306414112251163308, guid: fd94a26ac023a6b4eb431bf34cf3f3ae, type: 3}
 --- !u!50 &130315151
 Rigidbody2D:
   serializedVersion: 4
