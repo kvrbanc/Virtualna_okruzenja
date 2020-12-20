@@ -3,6 +3,7 @@ package virokr.controllers;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,6 +45,12 @@ public class ScoreController {
 			
 		});
 		return scores;
+	}
+
+	@GetMapping("/top")
+	public List<Score> getTopScores() {
+		List<Score> scores = getScores();
+		return scores.stream().limit(10).collect(Collectors.toList());
 	}
 
 	@GetMapping("/{id}")

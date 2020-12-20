@@ -56,4 +56,16 @@ public class ScoreService {
 		return userRepo.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException("Korisnik s imenom " + username + " nije pronađen."));
 	}
+
+	public int getScoreRank(int id) {
+		List<Score> scores = getScores();
+		int i = 1;
+		for (Score score : scores) {
+			if (score.getId() == id) {
+				return i;
+			}
+			i++;
+		}
+		return 0;
+	}
 }
