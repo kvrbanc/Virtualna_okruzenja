@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using System;
+using System.Text;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -53,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
 
     // varijabla koja sprema komponentu spawnera
     private GameObject spawner;
+
+    public string URL = "";
 
     void Start()
     {
@@ -212,7 +217,8 @@ public class PlayerMovement : MonoBehaviour
             // postavi energiju na 0
             energija = 0;
             Debug.Log("game over");
-            SceneManager.LoadScene(sceneName: "Game_over");
+            //pozovi send
+            StartCoroutine(log_score(brdusa));
         }
         
     }
@@ -253,6 +259,57 @@ public class PlayerMovement : MonoBehaviour
             // izmjena levela na spawneru
             spawner.GetComponent<SpawnerNo2>().postaviLevel(noviLevel);
         }
+    }
+
+    // Slanje rezultata u bazu
+    IEnumerator log_score(int info)
+    {
+        Debug.Log(info);
+        string logurl = URL + "scores";
+        Debug.Log(logurl);
+
+        string token = PlayerPrefs.GetString("token");
+        print(token);
+
+
+
+
+        UnityWebRequest loginreq = new UnityWebRequest(logurl, UnityWebRequest.kHttpVerbPOST);
+
+        //byte[] bytes = BitConverter.GetBytes(info);
+        byte[] bytes = Encoding.UTF8.GetBytes("5");
+        Debug.Log(Encoding.UTF8.GetString(bytes));
+        UploadHandler uH = new UploadHandlerRaw(bytes);
+
+        uH.contentType = "application/json";
+        loginreq.uploadHandler = uH;
+
+
+        loginreq.SetRequestHeader("Authorization", "Bearer" + token);
+
+
+        //UnityWebRequest loginreq = UnityWebRequest.Post(logurl, ("5"));
+
+        //loginreq.uploadHandler.contentType = "application/json";
+
+        //loginreq.SetRequestHeader("Authorization", "Bearer" + token);
+
+
+
+
+        yield return loginreq.SendWebRequest();
+        if (loginreq.isNetworkError || loginreq.isHttpError)
+        {
+            Debug.Log(loginreq.error);
+            SceneManager.LoadScene(sceneName: "Game_over");
+            yield break;
+        }
+        else
+        {
+            Debug.Log("Poslano na bazu");
+            SceneManager.LoadScene(sceneName: "Game_over");
+        }
+
     }
 
 
