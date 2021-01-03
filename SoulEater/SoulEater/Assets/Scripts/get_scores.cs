@@ -95,7 +95,6 @@ public class get_scores : MonoBehaviour
 
 
             string str = loginreq.downloadHandler.text.ToString();
-            Debug.Log("extracing scores");
             Scores playerScores = JsonUtility.FromJson<Scores>("{\"scores\":" + str + "}");
 
             int position = 0;
