@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -176,9 +176,18 @@ public class PlayerMovement : MonoBehaviour
         Destroy(instancaAnimacijeSakDuse, 0.25f);
         Destroy(instancaAnimacijeDobPointa, 0.25f);
 
-
+        
         // prvojera levela
         provjeriLevel();
+		
+		if ((brdusa == 666) || (brdusa > 666))
+        {
+            // postavi broj dusa na 666
+            brdusa = 666;
+            Debug.Log("game won");
+            //pozovi send
+            StartCoroutine(log_score(brdusa,"Game_won"));
+        }
 
     }
 
@@ -223,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
             energija = 0;
             Debug.Log("game over");
             //pozovi send
-            StartCoroutine(log_score(brdusa));
+            StartCoroutine(log_score(brdusa,"Game_over"));
         }
         
     }
@@ -269,7 +278,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Slanje rezultata u bazu
-    IEnumerator log_score(int info)
+    IEnumerator log_score(int info, String sceneName)
     {
         Debug.Log(info);
         string logurl = URL + "scores";
@@ -283,7 +292,6 @@ public class PlayerMovement : MonoBehaviour
 
         UnityWebRequest loginreq = new UnityWebRequest(logurl, UnityWebRequest.kHttpVerbPOST);
 
-        //byte[] bytes = BitConverter.GetBytes(info);
         byte[] bytes = Encoding.UTF8.GetBytes("5");
         Debug.Log(Encoding.UTF8.GetString(bytes));
         UploadHandler uH = new UploadHandlerRaw(bytes);
@@ -295,26 +303,17 @@ public class PlayerMovement : MonoBehaviour
         loginreq.SetRequestHeader("Authorization", "Bearer" + token);
 
 
-        //UnityWebRequest loginreq = UnityWebRequest.Post(logurl, ("5"));
-
-        //loginreq.uploadHandler.contentType = "application/json";
-
-        //loginreq.SetRequestHeader("Authorization", "Bearer" + token);
-
-
-
-
         yield return loginreq.SendWebRequest();
         if (loginreq.isNetworkError || loginreq.isHttpError)
         {
             Debug.Log(loginreq.error);
-            SceneManager.LoadScene(sceneName: "Game_over");
+            SceneManager.LoadScene(sceneName: sceneName);
             yield break;
         }
         else
         {
             Debug.Log("Poslano na bazu");
-            SceneManager.LoadScene(sceneName: "Game_over");
+            SceneManager.LoadScene(sceneName: sceneName);
         }
 
     }
