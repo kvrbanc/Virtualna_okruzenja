@@ -28,7 +28,6 @@ public class get_scores : MonoBehaviour
     [Serializable]
     public class Scores
     {
-        //employees is case sensitive and must match the string "employees" in the JSON.
         public Score[] scores;
     }
 
@@ -95,13 +94,25 @@ public class get_scores : MonoBehaviour
             Debug.Log(loginreq.downloadHandler.text);
 
 
-            string str = loginreq.downloadHandler.text;
-            Scores[] igr = JsonHelper.FromJson<Scores>(str);
+            string str = loginreq.downloadHandler.text.ToString();
+            Debug.Log("extracing scores");
+            Scores playerScores = JsonUtility.FromJson<Scores>("{\"scores\":" + str + "}");
+            Debug.Log("Vrijednost prvog:" + playerScores.scores[0].value);
+            Debug.Log("Ime prvog:" + playerScores.scores[0].user.username);
+            Debug.Log("Vrijednost drugog:" + playerScores.scores[1].value);
+            Debug.Log("Ime drugog:" + playerScores.scores[1].user.username);
 
-            Debug.Log(igr[0]);
-            Debug.Log(igr[1]);
+            int position = 0;
 
-            Scores ps = JsonUtility.FromJson<Scores>(loginreq.downloadHandler.text.ToString());
+            foreach (Score playerScore in playerScores.scores)
+            {
+                position++;
+                string username = playerScore.user.username;
+                int value = playerScore.value;
+                string scoreOutput = position + " " + username + " " + value;
+                //score output ispisati na ekran jedan ispod drugog
+            }
+
 
         }
 
