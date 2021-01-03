@@ -20,11 +20,11 @@ public class SpawnerNo2 : MonoBehaviour
 
     // polje koje sadrzi spawnpointe
     private Vector3[] spawnPoints = {
-        new Vector3(8, 3, 0),
-        new Vector3(8, 1.5f, 0),
-        new Vector3(8, 0, 0),
-        new Vector3(8, -1.5f, 0),
-        new Vector3(8, -3, 0)
+        new Vector3(9.5f, 3, 0),
+        new Vector3(9.5f, 1.5f, 0),
+        new Vector3(9.5f, 0, 0),
+        new Vector3(9.5f, -1.5f, 0),
+        new Vector3(9.5f, -3, 0)
     };
     // lista mjesta na kojima se vise ne mogu instancirati objekti
     private List<int> zauzetaMjesta = new List<int>(); // incijalizacija zbog kasnije provjere
