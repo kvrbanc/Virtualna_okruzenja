@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 8709426226043512064}
   - component: {fileID: 2764886413686653941}
   m_Layer: 0
-  m_Name: damage
+  m_Name: playerDamaged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 7569395454881088015}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.37, y: 0.06, z: 0}
-  m_LocalScale: {x: 0.722957, y: 0.6597442, z: 1}
+  m_LocalScale: {x: 0.65315354, y: 0.63524944, z: 1}
   m_Children:
   - {fileID: 5146570284009598484}
   - {fileID: 7632815506306906184}

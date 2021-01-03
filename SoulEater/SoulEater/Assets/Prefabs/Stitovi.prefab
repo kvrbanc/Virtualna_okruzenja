@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8106216463664936324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.33, y: 0.68, z: 0}
-  m_LocalScale: {x: 1.3546079, y: 1.3546079, z: 1.3546079}
+  m_LocalScale: {x: 1.1947938, y: 1.1359205, z: 1.3546079}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brzina: 10
   trajanjeStita: 2
+  zvuk: {fileID: 0}
 --- !u!114 &-8085213897929234532
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -57,6 +57,10 @@ public class PlayerMovement : MonoBehaviour
     // varijabla koja sprema komponentu spawnera
     private GameObject spawner;
 
+
+    // varijabla koja sprema komponentu spawnera pozadine
+    private GameObject backgroundSpawner;
+
     public string URL = "";
 
     void Start()
@@ -64,8 +68,9 @@ public class PlayerMovement : MonoBehaviour
         newposition = new Vector2(transform.position.x, transform.position.y);
         transform.position = newposition;
 
-        // dohvati spawner
+        // dohvati spawnere
         spawner = GameObject.FindGameObjectsWithTag("Spawner")[0];
+        backgroundSpawner = GameObject.FindGameObjectsWithTag("BackgroundSpawner")[0];
     }
 
     void Update()
@@ -258,6 +263,8 @@ public class PlayerMovement : MonoBehaviour
             trenutniLevel = noviLevel;
             // izmjena levela na spawneru
             spawner.GetComponent<SpawnerNo2>().postaviLevel(noviLevel);
+            // izmjena levela na spawneru pozadine
+            backgroundSpawner.GetComponent<BackgroundSpawner>().izmjenaPozadine(trenutniLevel);
         }
     }
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 429364231068128205}
   - component: {fileID: 1591398725288077444}
   m_Layer: 0
-  m_Name: playerHealed1
+  m_Name: playerHealed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,9 +24,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183392426316495816}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.95, y: 1.0700002, z: 0}
-  m_LocalScale: {x: 0.24008, y: 0.21967, z: 1}
+  m_LocalScale: {x: 0.20403875, y: 0.19933076, z: 1}
   m_Children:
   - {fileID: 4783889964978683987}
   m_Father: {fileID: 0}

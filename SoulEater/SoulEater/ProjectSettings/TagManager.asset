@@ -10,6 +10,7 @@ TagManager:
   - Energy
   - Sound
   - Spawner
+  - BackgroundSpawner
   layers:
   - Default
   - TransparentFX
