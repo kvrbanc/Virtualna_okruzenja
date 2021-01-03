@@ -75,7 +75,7 @@ public class get_scores : MonoBehaviour
     IEnumerator getscores()
     {
         Debug.Log("getscores");
-        string logurl = URL + "scores/";
+        string logurl = URL + "scores/top";
         Debug.Log(logurl);
         string token = PlayerPrefs.GetString("token");
         print(token);
@@ -97,21 +97,21 @@ public class get_scores : MonoBehaviour
             string str = loginreq.downloadHandler.text.ToString();
             Debug.Log("extracing scores");
             Scores playerScores = JsonUtility.FromJson<Scores>("{\"scores\":" + str + "}");
-            Debug.Log("Vrijednost prvog:" + playerScores.scores[0].value);
-            Debug.Log("Ime prvog:" + playerScores.scores[0].user.username);
-            Debug.Log("Vrijednost drugog:" + playerScores.scores[1].value);
-            Debug.Log("Ime drugog:" + playerScores.scores[1].user.username);
 
             int position = 0;
 
+            string scoresOutput = "";
             foreach (Score playerScore in playerScores.scores)
             {
                 position++;
                 string username = playerScore.user.username;
                 int value = playerScore.value;
-                string scoreOutput = position + " " + username + " " + value;
-                //score output ispisati na ekran jedan ispod drugog
+                scoresOutput = scoresOutput + position + ". " + username + " " + value + "\n";
             }
+            
+            //score output ispisati na ekran jedan ispod drugog
+
+            Debug.Log("Scores list result:" + scoresOutput);
 
 
         }
