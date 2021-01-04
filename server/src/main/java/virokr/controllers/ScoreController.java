@@ -73,4 +73,14 @@ public class ScoreController {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
+
+	@PostMapping("/add/{value}")
+	public ResponseEntity<Object> addScoreValue(@RequestHeader(value = "Authorization") String headerAuth, @PathVariable int value) {
+		try {
+			scoreService.addScore(jwtUtils.getUsernameFromHeader(headerAuth), value);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
 }
