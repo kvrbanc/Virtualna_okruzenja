@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
@@ -10,6 +10,7 @@ public class Login : MonoBehaviour
 {
     public InputField userinput;
     public InputField passwinput;
+    public Text loginStatus;
 
     public string URL = "";
     public string parameters = "{\"username\":\"string\",\"password\":\"string\"}";
@@ -70,9 +71,17 @@ public class Login : MonoBehaviour
         loginreq.SetRequestHeader("Content-Type", "application/json");
 
         yield return loginreq.SendWebRequest();
-        if (loginreq.isNetworkError || loginreq.isHttpError)
+		if (loginreq.isNetworkError)
         {
             Debug.Log(loginreq.error);
+            loginStatus.text = "There are some network connectivity issues";
+            yield break;
+        }
+        else if (loginreq.isHttpError)
+        {
+            Debug.Log(loginreq.error);
+            Debug.Log("Incorrect password and username combination");
+            loginStatus.text = "Incorrect password and username combination";
             yield break;
         }
         else
@@ -105,9 +114,17 @@ public class Login : MonoBehaviour
         loginreq.SetRequestHeader("Content-Type", "application/json");
 
         yield return loginreq.SendWebRequest();
-        if (loginreq.isNetworkError || loginreq.isHttpError)
+        if (loginreq.isNetworkError)
         {
             Debug.Log(loginreq.error);
+            loginStatus.text = "There are some network connectivity issues";
+            yield break;
+        }
+        else if (loginreq.isHttpError)
+        {
+            Debug.Log(loginreq.error);
+            Debug.Log("The user with this username already exists");
+            loginStatus.text = "The user with this username already exists";
             yield break;
         }
         else
@@ -116,6 +133,5 @@ public class Login : MonoBehaviour
         }
 
     }
-
 
 }
