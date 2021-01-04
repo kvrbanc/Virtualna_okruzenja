@@ -292,7 +292,7 @@ public class PlayerMovement : MonoBehaviour
 
         UnityWebRequest loginreq = new UnityWebRequest(logurl, UnityWebRequest.kHttpVerbPOST);
 
-        byte[] bytes = Encoding.UTF8.GetBytes("5");
+        byte[] bytes = Encoding.UTF8.GetBytes(info.ToString());
         Debug.Log(Encoding.UTF8.GetString(bytes));
         UploadHandler uH = new UploadHandlerRaw(bytes);
 
@@ -300,7 +300,7 @@ public class PlayerMovement : MonoBehaviour
         loginreq.uploadHandler = uH;
 
 
-        loginreq.SetRequestHeader("Authorization", "Bearer" + token);
+        loginreq.SetRequestHeader("Authorization", "Bearer " + token);
 
 
         yield return loginreq.SendWebRequest();
