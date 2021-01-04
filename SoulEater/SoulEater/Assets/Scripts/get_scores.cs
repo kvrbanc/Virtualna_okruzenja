@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using System;
 using System.Text;
@@ -9,6 +10,7 @@ public class get_scores : MonoBehaviour
 {
     public string URL = "";
     public int i = 0;
+    public Text resultsText;
 
     [Serializable]
     public class User
@@ -105,11 +107,12 @@ public class get_scores : MonoBehaviour
                 position++;
                 string username = playerScore.user.username;
                 int value = playerScore.value;
-                scoresOutput = scoresOutput + position + ". " + username + " " + value + "\n";
+                int level = (int)(Math.Ceiling((float)value/50));
+                scoresOutput = scoresOutput + position + ". " + username + "   " + "level " + level + "   " + value + " souls\n";
             }
-            
-            //score output ispisati na ekran jedan ispod drugog
 
+            //score output ispisati na ekran jedan ispod drugog
+            resultsText.text = scoresOutput;
             Debug.Log("Scores list result:" + scoresOutput);
 
 
