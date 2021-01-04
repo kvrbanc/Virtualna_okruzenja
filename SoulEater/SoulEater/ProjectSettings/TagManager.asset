@@ -11,6 +11,11 @@ TagManager:
   - Sound
   - Spawner
   - BackgroundSpawner
+  - TopBorder
+  - BottomBorder
+  - BrojacEnergije
+  - BrojacDusa
+  - Level
   layers:
   - Default
   - TransparentFX

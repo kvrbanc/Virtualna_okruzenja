@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637452624045843009
+      ticks: 637453609208752191
     m_Hash: 1385789116
   m_LockFileStatus:
     m_FilePath: D:/Virtualna okruzenja-projektv3/SoulEater/SoulEater/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637452624045853373
+      ticks: 637453609208782187
     m_Hash: 2358934726
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
