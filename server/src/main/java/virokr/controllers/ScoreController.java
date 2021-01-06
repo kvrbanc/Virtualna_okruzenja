@@ -65,19 +65,9 @@ public class ScoreController {
 	}
 
 	@PostMapping("")
-	public ResponseEntity<Object> addScore(@RequestHeader(value = "Authorization") String headerAuth, @RequestBody Integer value) {
+	public ResponseEntity<Object> addScore(@RequestHeader(value = "Authorization") String headerAuth, @RequestBody Integer score) {
 		try {
-			scoreService.addScore(jwtUtils.getUsernameFromHeader(headerAuth), value);
-			return new ResponseEntity<>(HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-	}
-
-	@PostMapping("/add/{value}")
-	public ResponseEntity<Object> addScoreValue(@RequestHeader(value = "Authorization") String headerAuth, @PathVariable int value) {
-		try {
-			scoreService.addScore(jwtUtils.getUsernameFromHeader(headerAuth), value);
+			scoreService.addScore(jwtUtils.getUsernameFromHeader(headerAuth), score);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
